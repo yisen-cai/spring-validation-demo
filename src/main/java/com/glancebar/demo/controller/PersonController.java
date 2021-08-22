@@ -1,10 +1,10 @@
 package com.glancebar.demo.controller;
 
+import com.glancebar.demo.binding.annotation.Authentication;
 import com.glancebar.demo.vo.Contact;
 import com.glancebar.demo.vo.DateInside;
 import com.glancebar.demo.vo.Person;
 import com.glancebar.demo.vo.RequestParamObj;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,12 +53,7 @@ public class PersonController {
     }
 
     @PostMapping("/validate-number")
-    public boolean validatePhoneNumber(@Valid @RequestBody Contact contact, BindingResult result) {
-        if (result.hasErrors()) {
-            result.getFieldErrors().forEach(fieldError ->
-                    System.out.println(fieldError.getDefaultMessage())
-            );
-        }
+    public boolean validatePhoneNumber(@Valid @RequestBody Contact contact) {
         return true;
     }
 
@@ -66,5 +61,11 @@ public class PersonController {
     @GetMapping("/request-param")
     public int parseRequestParam(@Valid RequestParamObj paramObj) {
         return paramObj.getSize();
+    }
+
+
+    @GetMapping("/authentication")
+    public String parseAuthentication(@Authentication String authentication) {
+        return authentication;
     }
 }
