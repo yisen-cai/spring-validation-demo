@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestParamConstraint {
 
-    String message() default "非法参数, page must bigger than size";
+    String message() default "{RequestParamObj.default.msg}";
 
     Class<?>[] groups() default {};
 

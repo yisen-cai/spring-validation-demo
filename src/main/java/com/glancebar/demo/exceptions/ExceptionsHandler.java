@@ -32,6 +32,9 @@ public class ExceptionsHandler {
         e.getFieldErrors().forEach(fieldError -> {
             messages.add("Field: " + fieldError.getField() + " " + fieldError.getDefaultMessage());
         });
+        if (messages.size() == 0) {
+            e.getAllErrors().forEach(objectError -> messages.add("Param error: " + objectError.getDefaultMessage()));
+        }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(String.join(",", messages));
     }
 }

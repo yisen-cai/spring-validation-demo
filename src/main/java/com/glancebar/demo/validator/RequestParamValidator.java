@@ -20,11 +20,12 @@ public class RequestParamValidator implements ConstraintValidator<RequestParamCo
         boolean valid = true;
         if (value.getPage() > value.getSize()) {
             valid = false;
+//            context.disableDefaultConstraintViolation();
 //            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}").addConstraintViolation();
-            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
-                    .addPropertyNode("page").addConstraintViolation()
-                    .buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
-                    .addPropertyNode("size").addConstraintViolation();
+//            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
+//                    .addPropertyNode("page").addConstraintViolation()
+//                    .buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
+//                    .addPropertyNode("size").addConstraintViolation();
         }
         return valid;
     }
