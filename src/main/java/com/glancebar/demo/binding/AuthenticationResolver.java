@@ -1,5 +1,6 @@
 package com.glancebar.demo.binding;
 
+import com.glancebar.demo.binding.annotation.Authentication;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -10,15 +11,22 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * Custom controller method Authentication argument resolver.
+ *
  * @author YISHEN CAI
  */
 public class AuthenticationResolver implements HandlerMethodArgumentResolver {
 
 
+    /**
+     * Support Authentication annotation.
+     *
+     * @param parameter
+     * @return
+     */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        parameter.getDeclaringClass();
-        return true;
+        return parameter.getParameterAnnotation(Authentication.class) != null;
     }
 
     @Override
