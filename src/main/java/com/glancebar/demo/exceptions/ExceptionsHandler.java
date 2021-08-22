@@ -29,8 +29,9 @@ public class ExceptionsHandler {
     @ExceptionHandler(value = BindException.class)
     public ResponseEntity<?> handleParamNotValidException(BindException e) {
         List<String> messages = new ArrayList<>();
-        e.getAllErrors().forEach(objectError ->
-                messages.add("Field: " + objectError.getObjectName() + " " + objectError.getDefaultMessage()));
+        e.getFieldErrors().forEach(fieldError -> {
+            messages.add("Field: " + fieldError.getField() + " " + fieldError.getDefaultMessage());
+        });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(String.join(",", messages));
     }
 }
