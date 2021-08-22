@@ -2,6 +2,8 @@ package com.glancebar.demo.validator;
 
 import com.glancebar.demo.validator.annotation.RequestParamConstraint;
 import com.glancebar.demo.vo.RequestParamObj;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -20,7 +22,8 @@ public class RequestParamValidator implements ConstraintValidator<RequestParamCo
         boolean valid = true;
         if (value.getPage() > value.getSize()) {
             valid = false;
-            context.buildConstraintViolationWithTemplate("{SomeObject.code.first}").addPropertyNode("page must less than size");
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}").addConstraintViolation();
         }
         return valid;
     }
