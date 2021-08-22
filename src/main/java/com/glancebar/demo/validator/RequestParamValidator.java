@@ -17,6 +17,11 @@ public class RequestParamValidator implements ConstraintValidator<RequestParamCo
 
     @Override
     public boolean isValid(RequestParamObj value, ConstraintValidatorContext context) {
-        return value.getPage() > value.getSize();
+        boolean valid = true;
+        if (value.getPage() > value.getSize()) {
+            valid = false;
+            context.buildConstraintViolationWithTemplate("{SomeObject.code.first}").addPropertyNode("page must less than size");
+        }
+        return valid;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 /**
  * Date string converter.
@@ -19,7 +20,7 @@ public class LocalDateConverter implements Converter<String, LocalDate> {
     @Override
     public LocalDate convert(String source) {
         try {
-            return LocalDate.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return LocalDate.parse(source, DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT));
         } catch (Exception e) {
             throw new ParamException("Parameter " + source + " is not valid!");
         }
