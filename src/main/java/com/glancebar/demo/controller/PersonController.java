@@ -1,6 +1,7 @@
 package com.glancebar.demo.controller;
 
 import com.glancebar.demo.binding.annotation.Authentication;
+import com.glancebar.demo.exceptions.ParamException;
 import com.glancebar.demo.vo.Contact;
 import com.glancebar.demo.vo.DateInside;
 import com.glancebar.demo.vo.Person;
@@ -67,5 +68,11 @@ public class PersonController {
     @GetMapping("/authentication")
     public String parseAuthentication(@Authentication String authentication) {
         return authentication;
+    }
+
+
+    @GetMapping("/exception-with-status")
+    public String exceptionExample() {
+        throw new ParamException("exception");
     }
 }
