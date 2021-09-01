@@ -3,18 +3,17 @@ package com.glancebar.demo.converter;
 import com.glancebar.demo.exceptions.ParamException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-
+@SpringBootTest
 class LocalDateConverterTest {
     private final LocalDateConverter converter = new LocalDateConverter();
-
+    private final Pattern pattern = Pattern.compile("####(.*)####");
 
     @Test
     void convert() {

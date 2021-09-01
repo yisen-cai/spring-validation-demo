@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.PropertyValue;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author YISHEN CAI
  */
+@SpringBootTest
 public class BeanWrapperTest {
 
     @Test

@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.glancebar</groupId>
-    <artifactId>validation-java-demo</artifactId>
+    <artifactId>spring-validation-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>validation-java-demo</name>
-    <description>validation-java-demo</description>
+    <description>spring-validation-demo</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -64,8 +64,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -78,6 +76,10 @@
                     <args>
                         <arg>-Xjsr305=strict</arg>
                     </args>
+                    <sourceDirs>
+                        <sourceDir>${project.basedir}/src/main/java</sourceDir>
+                        <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                    </sourceDirs>
                     <compilerPlugins>
                         <plugin>spring</plugin>
                     </compilerPlugins>

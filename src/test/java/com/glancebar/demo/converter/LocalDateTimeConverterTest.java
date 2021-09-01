@@ -3,9 +3,12 @@ package com.glancebar.demo.converter;
 import com.glancebar.demo.exceptions.ParamException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
+
+@SpringBootTest
 class LocalDateTimeConverterTest {
     private LocalDateTimeConverter converter = new LocalDateTimeConverter();
 

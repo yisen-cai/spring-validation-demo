@@ -3,8 +3,8 @@ package com.glancebar.demo.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author YISHEN CAI
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionsHandler {
 
     @ExceptionHandler(value = RuntimeException.class)
