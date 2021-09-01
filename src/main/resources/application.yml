@@ -1,4 +1,8 @@
+#server:
+#  error:
+#    path: /error
 server:
   error:
     path: /error
+    include-stacktrace: always
   port: 8080
