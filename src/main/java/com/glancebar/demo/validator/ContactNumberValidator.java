@@ -6,6 +6,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
+ * Do the real number validation.
+ *
  * @author YISHEN CAI
  */
 public class ContactNumberValidator implements ConstraintValidator<ContactNumberConstraint, String> {

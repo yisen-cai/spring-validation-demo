@@ -1,6 +1,7 @@
 #server:
 #  error:
 #    path: /error
+# 覆写默认的全局异常处理（非Controller层）
 server:
   error:
     path: /error

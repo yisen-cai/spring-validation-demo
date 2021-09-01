@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "cdae5eda-9eb3-450c-9352-0ce3841e642b",
+		"name": "Spring in Action",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Handle request param",
+			"item": [
+				{
+					"name": "Parse invalid body param",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('', ()=> {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2021-08-222\",\r\n    \"dateTime\": \"2021-08-22 14:22:18\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER}}/person/parse-body",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"person",
+								"parse-body"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-22",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parse invalid query param",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/person/parse?date=2021-08-40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"parse"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parse query param",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true,
+							"accept": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": -1,\r\n    \"name\": \"yishen.cai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/person/parse?date=2021-08-22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"parse"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2021-08-22"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/person/authentication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request param",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Charset",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/person/request-param?page=11&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"request-param"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "11"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parse body param with constraint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/person/validate-number",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"person",
+								"validate-number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exception example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER}}/person/exception-with-status",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"person",
+								"exception-with-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not Found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SERVER}}/api/0.0.1/people",
+							"host": [
+								"{{SERVER}}"
+							],
+							"path": [
+								"api",
+								"0.0.1",
+								"people"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SERVER",
+			"value": "http://localhost:8080"
+		}
+	]
+}

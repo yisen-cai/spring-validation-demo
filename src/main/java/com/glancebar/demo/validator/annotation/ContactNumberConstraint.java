@@ -7,6 +7,8 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
+ * Annotate on field, constraint number pattern.
+ *
  * @author YISHEN CAI
  */
 @Documented

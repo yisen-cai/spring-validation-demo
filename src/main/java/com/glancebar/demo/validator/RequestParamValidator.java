@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
+ * Class field validation and add validation message.
  * @author YISHEN CAI
  */
 public class RequestParamValidator implements ConstraintValidator<RequestParamConstraint, RequestParamObj> {
@@ -21,6 +22,7 @@ public class RequestParamValidator implements ConstraintValidator<RequestParamCo
         if (value.getPage() > value.getSize()) {
             valid = false;
             context.disableDefaultConstraintViolation();
+            // 此处可以接口Spring提供的i18n设置多国语言，消息模版等
             context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}").addConstraintViolation();
             context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
                     .addPropertyNode("page").addConstraintViolation()

@@ -7,6 +7,8 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
+ * Annotate on class, constraint class field.
+ *
  * @author YISHEN CAI
  */
 @Documented
@@ -15,6 +17,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestParamConstraint {
 
+    /**
+     * 这里也可以指定消息模版
+     */
     String message() default "{RequestParamObj.default.msg}";
 
     Class<?>[] groups() default {};

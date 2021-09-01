@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Controller layer error handling.
+ *
  * @author YISHEN CAI
  */
 @RestControllerAdvice
