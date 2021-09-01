@@ -108,6 +108,77 @@ public Long parseDate(@RequestParam LocalDate date) {
 
 
 
+#### 请求Body或对象类型参数校验
+
+~~~java
+@RequestParamConstraint
+public class RequestParamObj {
+    @NotNull(message = "page can't be null")
+    private Integer page;
+
+    @NotNull(message = "size can't be null")
+    private Integer size;
+    ....
+}
+
+
+/**
+ * Annotate on class, constraint class field.
+ */
+@Documented
+@Constraint(validatedBy = RequestParamValidator.class)
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RequestParamConstraint {
+
+    /**
+     * 这里也可以指定消息模版
+     */
+    String message() default "{RequestParamObj.default.msg}";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+}
+
+
+/**
+ * Class field validation and add validation message.
+ */
+public class RequestParamValidator implements ConstraintValidator<RequestParamConstraint, RequestParamObj> {
+    @Override
+    public void initialize(RequestParamConstraint constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(RequestParamObj value, ConstraintValidatorContext context) {
+        boolean valid = true;
+        if (value.getPage() > value.getSize()) {
+            valid = false;
+            context.disableDefaultConstraintViolation();
+            // 此处可以接口Spring提供的i18n设置多国语言，消息模版等
+            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}").addConstraintViolation();
+            context.buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
+                    .addPropertyNode("page").addConstraintViolation()
+                    .buildConstraintViolationWithTemplate("{RequestParamObj.invalid.msg}")
+                    .addPropertyNode("size").addConstraintViolation();
+        }
+        return valid;
+    }
+}
+
+
+@GetMapping("/request-param")
+public int parseRequestParam(@Valid RequestParamObj paramObj) {
+    return paramObj.getSize();
+}
+~~~
+
+
+
+
+
 #### Jackson序列化反序列化类型转换
 
 配置LocalDate, 复杂对象的类型转换, Long类型在前端精度丢失问题的解决(序列化为字符串), 一些LocalDate类型序列化为字符串这种

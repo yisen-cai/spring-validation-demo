@@ -65,10 +65,10 @@ public class PersonController {
     }
 
 
-@GetMapping("/authentication")
-public String parseAuthentication(@Authentication String authentication) {
-    return authentication;
-}
+    @GetMapping("/authentication")
+    public String parseAuthentication(@Authentication String authentication) {
+        return authentication;
+    }
 
 
     @GetMapping("/exception-with-status")
